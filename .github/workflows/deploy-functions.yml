@@ -27,7 +27,7 @@ jobs:
 
       - name: Echo environment
         run: |
-          echo "Deploying to environment: ${{GITHUB_ENVRIONMENT}}"
+          echo "Deploying to environment: ${GITHUB_ENVRIONMENT}"
           echo "Echo 2: ${{steps.qoomon-context.outputs.environment}}"
 
       - name: Deploy Twilio Functions to environment ${{github.ref_name}}
