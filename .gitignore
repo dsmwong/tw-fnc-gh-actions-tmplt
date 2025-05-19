@@ -138,8 +138,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# Twilio Serverless RC
-.twilioserverlessrc
-
 # VCode directories
 .vscode/

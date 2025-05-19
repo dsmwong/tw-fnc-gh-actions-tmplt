@@ -20,7 +20,7 @@ jobs:
 
       - name: Install Twilio CLI and plugins
         run: |
-          npm install -g twilio
+          npm install
           twilio plugins:install @twilio-labs/plugin-serverless
 
       - name: Authenticate Twilio CLI
