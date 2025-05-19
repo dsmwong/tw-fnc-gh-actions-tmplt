@@ -25,9 +25,11 @@ jobs:
           npm install -g twilio-cli
           twilio plugins:install @twilio-labs/plugin-serverless
 
-      - name: Deploy Twilio Functions to environment [${{steps.qoomon-context.outputs.environment}}] - [${{ vars.TWILIO_ACCOUNT_SID }}]
+      - name: Deploy Twilio Functions to environment
         env:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
         run: |
+          echo "Deploying to environment: ${{ env.GITHUB_ENVIRONMENT }}"
+          echo "TWILIO_ACCOUNT_SID: $TWILIO_ACCOUNT_SID"
           twilio serverless:deploy --username $TWILIO_ACCOUNT_SID --password $TWILIO_AUTH_TOKEN --environment=dev --force
