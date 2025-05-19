@@ -28,4 +28,4 @@ jobs:
           ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
         run: |
-          twilio serverless:deploy --account-sid $TWILIO_ACCOUNT_SID --environment=prod
+          twilio serverless:deploy --username $ACCOUNT_SID --password $AUTH_TOKEN --environment=dev --force
