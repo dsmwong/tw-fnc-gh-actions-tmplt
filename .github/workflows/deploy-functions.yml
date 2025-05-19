@@ -18,6 +18,10 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Echo environment variables
+        run: |
+          echo "ACCOUNT_SID for ${{github.ref_name}} ${{ secrets.TWILIO_ACCOUNT_SID_${{github.ref_name}} }} "
+
       - name: Install Twilio CLI and plugins
         run: |
           npm install -g twilio-cli
