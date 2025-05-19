@@ -8,10 +8,6 @@ jobs:
     environment: ${{github.ref_name}}
 
     steps:
-      - name: using Qoomon Context
-        uses: qoomon/actions-context@v4
-        id: qoomon-context
-
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -24,11 +20,6 @@ jobs:
         run: |
           npm install -g twilio-cli
           twilio plugins:install @twilio-labs/plugin-serverless
-
-      - name: Echo environment
-        run: |
-          echo "Deploying to environment: ${GITHUB_ENVRIONMENT}"
-          echo "Echo 2: ${{steps.qoomon-context.outputs.environment}}"
 
       - name: Deploy Twilio Functions to environment ${{github.ref_name}}
         env:
