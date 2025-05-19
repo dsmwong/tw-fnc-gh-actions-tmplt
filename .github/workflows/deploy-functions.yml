@@ -5,7 +5,7 @@ on: push
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: ${{github.ref}}
+    environment: ${{github.ref_name}}
 
     steps:
       - name: Checkout code
