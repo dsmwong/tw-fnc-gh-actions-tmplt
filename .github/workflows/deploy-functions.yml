@@ -1,0 +1,37 @@
+name: Deploy Twilio Functions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Twilio CLI and plugins
+        run: |
+          npm install -g twilio
+          twilio plugins:install @twilio-labs/plugin-serverless
+
+      - name: Authenticate Twilio CLI
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+        run: |
+          twilio login --account-sid $TWILIO_ACCOUNT_SID --auth-token $TWILIO_AUTH_TOKEN
+
+      - name: Deploy Twilio Functions
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+        run: |
+          twilio serverless:deploy --account-sid $TWILIO_ACCOUNT_SID --environment=prod
