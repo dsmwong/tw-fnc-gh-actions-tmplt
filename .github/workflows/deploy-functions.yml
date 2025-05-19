@@ -25,7 +25,7 @@ jobs:
 
       - name: Deploy Twilio Functions
         env:
-          ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
-          AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
         run: |
-          twilio serverless:deploy --username $ACCOUNT_SID --password $AUTH_TOKEN --environment=dev --force
+          twilio serverless:deploy --username $TWILIO_ACCOUNT_SID --password $TWILIO_AUTH_TOKEN --environment=dev --force
