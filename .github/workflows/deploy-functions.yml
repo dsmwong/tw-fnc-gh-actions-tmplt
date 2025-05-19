@@ -9,13 +9,13 @@ jobs:
 
     steps:
       - name: Use Qoomon Context
-        id: qoomon-context
         uses: qoomon/actions--context@v4
-        run: |
-          echo "GITHUB_REF_NAME=${GITHUB_REF_NAME}"
-          echo "GITHUB_REF=${GITHUB_EVIRONMENT}}"
-        
+        id: qoomon-context
 
+      - name: Echo Qoomon Context
+        run: |
+          echo "Qoomon Context: ${{ steps.qoomon-context.outputs.environment }}"
+  
       - name: Checkout code
         uses: actions/checkout@v3
 
